@@ -16,6 +16,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: #050505;
             touch-action: pan-y; 
+            -webkit-tap-highlight-color: transparent;
         }
         
         .title-font { font-family: 'Dancing Script', cursive; }
@@ -178,8 +179,11 @@
 </head>
 <body>
 
-    <!-- AUDIO PLAYER ASCUNS YOUTUBE -->
-    <div id="youtube-audio" style="position: absolute; top: -9999px; left: -9999px; width: 0; height: 0; pointer-events: none;"></div>
+    <!-- AUDIO PLAYER NATIV -->
+    <audio id="bg-music" loop>
+        <!-- Asigură-te că fișierul este la fel numit în GitHub -->
+        <source src="Hard%20to%20Concentrate.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Countdown Intro -->
     <div id="countdown-overlay">
@@ -215,7 +219,7 @@
         <div class="tap-zone tap-right" id="tap-right"></div>
 
         <!-- SLIDE 0: Intro -->
-        <div class="slide bg-gradient-1 paper-bg px-8" id="slide-0">
+        <div class="slide bg-gradient-1 paper-bg px-8 pt-8" id="slide-0">
             <div class="max-w-md mx-auto w-full text-center relative pt-8">
                 <div class="absolute -top-2 -right-2 md:-top-10 md:-right-6 text-4xl rotate-12 bg-white p-2 rounded shadow-md z-10"><div class="tape" style="width: 40px; top: -10px;"></div>🐾</div>
                 
@@ -224,10 +228,10 @@
                     <span class="text-3xl text-pink-100 font-light font-sans italic">Vanessa számára,</span>
                 </h2>
                 
-                <h1 class="wrapped-title text-5xl md:text-7xl text-white mb-4 animate-slide-up mt-6 drop-shadow-md" style="animation-delay: 0.5s;">
+                <h1 class="wrapped-title text-6xl md:text-7xl text-white mb-2 animate-slide-up mt-6 drop-shadow-md" style="animation-delay: 0.5s;">
                     23<br>De Rotații<br>În Jurul<br>Soarelui.
                 </h1>
-                <p class="text-xl text-pink-100 italic mb-8 animate-slide-up" style="animation-delay: 0.7s;">23 forgás a Nap körül.</p>
+                <p class="text-xl text-pink-200 italic mb-8 animate-slide-up" style="animation-delay: 0.7s;">23 forgás a Nap körül.</p>
                 
                 <p class="text-xl md:text-2xl text-white font-bold animate-slide-up" style="animation-delay: 1.2s;">
                     Hai să ne uităm la povestea ta.<br>
@@ -237,7 +241,7 @@
         </div>
 
         <!-- SLIDE 1: 2003 Culture -->
-        <div class="slide paper-bg p-8 flex items-center justify-center" id="slide-1">
+        <div class="slide paper-bg p-8 pt-12 flex items-center justify-center" id="slide-1">
             <div class="max-w-md mx-auto w-full text-center relative">
                 <h2 class="wrapped-title text-4xl text-gray-900 mb-2 animate-slide-up">Lumea în care te-ai născut...</h2>
                 <p class="text-xl text-gray-500 italic mb-8 animate-slide-up" style="animation-delay: 0.2s;">A világ, amelybe születtél...</p>
@@ -260,7 +264,7 @@
         </div>
 
         <!-- SLIDE 2: Ugyes -->
-        <div class="slide bg-gradient-1 paper-bg flex items-center justify-center p-8" id="slide-2">
+        <div class="slide bg-gradient-1 paper-bg flex items-center justify-center p-8 pt-12" id="slide-2">
             <div class="max-w-md mx-auto w-full text-center relative">
                 <h2 class="wrapped-title text-4xl md:text-5xl text-white mb-4 animate-slide-up drop-shadow-md leading-tight">
                     Vanessa, ești foarte, foarte <br><span class="text-yellow-300 text-6xl">ügyes</span>.
@@ -278,7 +282,7 @@
         </div>
 
         <!-- SLIDE 3: Zodiac -->
-        <div class="slide bg-gradient-zodiac p-6 flex flex-col justify-center pt-16" id="slide-3">
+        <div class="slide bg-gradient-zodiac p-6 pt-16 flex flex-col justify-center" id="slide-3">
             <div class="max-w-md mx-auto w-full text-center relative text-white">
                 
                 <!-- Suspans Text -->
@@ -288,58 +292,58 @@
                 </div>
 
                 <div class="animate-slide-up" style="animation-delay: 3.8s;">
-                    <h2 class="text-lg md:text-xl text-red-300 font-bold uppercase tracking-widest mt-4">Născută sub semnul</h2>
+                    <h2 class="text-lg text-red-300 font-bold uppercase tracking-widest mb-1">Născută sub semnul</h2>
                     <p class="text-sm text-red-400 italic mb-2">Jegyében születtél</p>
                     
-                    <h1 class="wrapped-title text-5xl md:text-6xl mb-4 drop-shadow-md">Balanței ♎<br><span class="text-2xl font-light italic">Mérleg ♎</span></h1>
+                    <h1 class="wrapped-title text-6xl mb-1 drop-shadow-md">Balanței</h1>
+                    <span class="text-3xl font-light italic text-red-200 block mb-6">Mérleg</span>
                 </div>
                 
-                <div class="space-y-3 text-left">
-                    <div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10 animate-slide-up -rotate-1" style="animation-delay: 6.5s;">
+                <div class="space-y-3 text-left mt-2">
+                    <div class="bg-black/40 backdrop-blur-md p-4 rounded-lg border border-white/10 animate-slide-up -rotate-1" style="animation-delay: 6.5s;">
                         <p class="text-xs text-red-300 font-bold uppercase mb-1">Caracteristica 1:</p>
                         <p class="text-lg font-bold">Extrem de inteligentă.</p>
-                        <p class="text-xs text-gray-300 italic mt-0.5">Rendkívül okos.</p>
+                        <p class="text-sm text-gray-300 italic mt-0.5">Rendkívül okos.</p>
                     </div>
                     
-                    <div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10 animate-slide-up rotate-1 ml-4" style="animation-delay: 8.5s;">
+                    <div class="bg-black/40 backdrop-blur-md p-4 rounded-lg border border-white/10 animate-slide-up rotate-1 ml-4" style="animation-delay: 8.5s;">
                         <p class="text-xs text-red-300 font-bold uppercase mb-1">Caracteristica 2:</p>
                         <p class="text-lg font-bold">Absolut superbă.</p>
-                        <p class="text-xs text-gray-300 italic mt-0.5">Abszolút gyönyörű.</p>
+                        <p class="text-sm text-gray-300 italic mt-0.5">Abszolút gyönyörű.</p>
                     </div>
                     
-                    <div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10 animate-slide-up -rotate-2" style="animation-delay: 11.0s;">
+                    <div class="bg-black/40 backdrop-blur-md p-4 rounded-lg border border-white/10 animate-slide-up -rotate-2" style="animation-delay: 11.0s;">
                         <p class="text-xs text-red-300 font-bold uppercase mb-1">Adevărul gol-goluț / Az őszinte igazság:</p>
-                        <p class="text-sm md:text-base leading-tight mb-1">Ești incredibil de nehotărâtă când vine vorba de alegeri, dar mereu extrem de sigură pe tine când zici ceva!</p>
-                        <p class="text-xs md:text-sm text-gray-300 italic leading-tight">Hihetetlenül döntésképtelen vagy a választásoknál, de mindig nagyon határozott vagy abban, amit mondasz!</p>
+                        <p class="text-sm leading-tight mb-1 font-medium">Ești incredibil de nehotărâtă când vine vorba de alegeri, dar mereu extrem de sigură pe tine când zici ceva!</p>
+                        <p class="text-xs text-gray-300 italic leading-tight">Hihetetlenül döntésképtelen vagy a választásoknál, de mindig nagyon határozott vagy abban, amit mondasz!</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- SLIDE 4: Only Her -->
-        <div class="slide bg-gradient-3 p-4 flex flex-col justify-center overflow-hidden" id="slide-4">
+        <div class="slide bg-gradient-3 p-4 pt-12 flex flex-col justify-center overflow-hidden" id="slide-4">
             <h2 class="text-center title-font text-3xl md:text-4xl text-white mb-1 z-50 drop-shadow-sm animate-slide-up">Avertisment: Nivel periculos de ridicat de frumusețe...</h2>
             <p class="text-center text-red-200 italic mb-6 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 0.3s;">Figyelem: Veszélyesen magas szépségszint...</p>
             
             <div class="w-full max-w-md mx-auto relative h-[520px]">
-                <!-- Pozele ei -->
-                <div class="absolute w-32 md:w-40 polaroid polaroid-anim -rotate-12 top-[5%] left-[5%] shadow-lg" style="animation-delay: 2.0s;">
+                <div class="absolute w-32 md:w-40 polaroid polaroid-anim -rotate-6 top-[5%] left-[8%] shadow-lg" style="animation-delay: 1.5s;">
                     <div class="tape"></div>
-                    <img src="https://i.imgur.com/CGNzmHM.jpeg" class="w-full aspect-[4/5] object-cover">
+                    <img src="https://i.imgur.com/CGNzmHM.jpeg" class="w-full aspect-square object-cover">
                 </div>
                 
-                <div class="absolute w-36 md:w-44 polaroid polaroid-anim rotate-12 top-[10%] right-[5%] shadow-lg" style="animation-delay: 4.0s;">
+                <div class="absolute w-36 md:w-44 polaroid polaroid-anim rotate-12 top-[12%] right-[5%] shadow-lg" style="animation-delay: 3.5s;">
                     <div class="tape"></div>
-                    <img src="https://i.imgur.com/pG9usjG.jpeg" class="w-full aspect-[4/5] object-cover">
+                    <img src="https://i.imgur.com/pG9usjG.jpeg" class="w-full aspect-square object-cover">
                 </div>
 
-                <div class="absolute w-40 md:w-48 polaroid polaroid-anim -rotate-6 top-[25%] left-[10%] shadow-xl" style="animation-delay: 6.0s;">
+                <div class="absolute w-40 md:w-48 polaroid polaroid-anim -rotate-12 bottom-[15%] left-[5%] shadow-xl" style="animation-delay: 5.5s;">
                     <div class="tape"></div>
-                    <img src="https://i.imgur.com/Y1nuqLF.jpeg" class="w-full aspect-[4/5] object-cover">
+                    <img src="https://i.imgur.com/Y1nuqLF.jpeg" class="w-full aspect-square object-cover">
                 </div>
                 
                 <!-- Main centered image -->
-                <div class="absolute w-48 md:w-56 polaroid polaroid-anim rotate-2 top-[20%] left-0 right-0 mx-auto z-40 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" style="animation-delay: 8.0s;">
+                <div class="absolute w-48 md:w-56 polaroid polaroid-anim rotate-2 top-[20%] left-0 right-0 mx-auto z-40 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" style="animation-delay: 7.5s;">
                     <div class="tape" style="width: 100px;"></div>
                     <img src="https://i.imgur.com/fdBmzx2.jpeg" class="w-full aspect-[4/5] object-cover">
                     <p class="text-center mt-3 text-gray-800 title-font text-2xl font-bold">Superbă.<br><span class="text-sm italic font-normal text-gray-500">Gyönyörű.</span></p>
@@ -351,13 +355,12 @@
         </div>
 
         <!-- SLIDE 5: Us (6 PHOTOS SCATTERED) -->
-        <div class="slide bg-gradient-2 p-6" id="slide-5">
+        <div class="slide bg-gradient-2 p-6 pt-12" id="slide-5">
             <div class="max-w-md mx-auto w-full h-full flex flex-col justify-center relative">
                 <h2 class="wrapped-title text-4xl md:text-5xl text-white mb-2 drop-shadow-md leading-tight animate-slide-up z-50">Duo-ul tău<br>de anul acesta</h2>
                 <p class="text-2xl text-red-200 italic mb-6 animate-slide-up z-50" style="animation-delay: 0.3s;">Az idei duód</p>
                 
                 <div class="w-full relative h-[520px]">
-                    <!-- Toate cele 6 poze cad una dupa alta -->
                     <div class="absolute w-32 md:w-40 polaroid polaroid-anim -rotate-6 top-[0%] left-[5%] shadow-lg" style="animation-delay: 1.5s;">
                         <div class="tape"></div>
                         <img src="https://i.imgur.com/NzUeOg2.jpeg" class="w-full aspect-square object-cover">
@@ -393,7 +396,7 @@
         </div>
 
         <!-- SLIDE 6: Written Message -->
-        <div class="slide bg-gradient-1 paper-bg p-8 flex items-center justify-center" id="slide-6">
+        <div class="slide bg-gradient-1 paper-bg p-8 pt-12 flex items-center justify-center" id="slide-6">
             <div class="max-w-md mx-auto w-full relative">
                 <div class="bg-[#fdfbf7] p-6 md:p-8 rounded shadow-2xl relative animate-slide-up border-2 border-red-100" style="animation-delay: 0.5s;">
                      <div class="tape" style="top: -15px; left: 50%; transform: translateX(-50%); width: 100px;"></div>
@@ -401,14 +404,13 @@
                      <h2 class="title-font text-4xl text-red-600 mb-1 border-red-200">Pentru tine...</h2>
                      <p class="text-lg text-red-400 italic mb-6 border-b-2 border-red-200 pb-2">Neked...</p>
                      
-                     <!-- EDIT THIS TEXT BELOW -->
-                     <p class="text-base md:text-lg text-gray-800 font-light leading-relaxed mb-4">
+                     <p class="text-sm md:text-base text-gray-800 font-medium leading-relaxed mb-4">
                         Îți doresc să ai în viața ta oameni care să lupte la fel de tare pentru tine, cum lupți și tu pentru animale. Îmi doresc să fii înconjurată de oameni – cum ți-am spus și ieri – la fel de frumoși precum sunt ochii tăi și la fel de inteligenți precum ești și tu.
                      </p>
-                     <p class="text-base md:text-lg text-gray-800 font-light leading-relaxed">
+                     
+                     <p class="text-sm md:text-base text-gray-800 font-medium leading-relaxed">
                         Dar, mai presus de toate acestea, îmi doresc ca în anul care vine să ajungi să te privești pe tine cu privirea cu care te privesc eu. Mi-aș dori să începi să te iubești pe tine cu iubirea pe care, de fapt, o meriți din plin. Ești o persoană iubită de toți, Vanessa; totuși, pare că uneori tocmai tu te iubești cel mai puțin.
                      </p>
-                     <!-- EDIT THIS TEXT ABOVE -->
 
                      <p class="title-font text-2xl text-red-500 text-right mt-8">Cu dragoste, Eugen Sipos</p>
                      <p class="text-sm text-gray-500 italic text-right mt-1">Szeretettel, Eugen Sipos</p>
@@ -417,7 +419,7 @@
         </div>
 
         <!-- SLIDE 7: Time Alive -->
-        <div class="slide bg-gradient-time p-6 text-white" id="slide-7">
+        <div class="slide bg-gradient-time p-6 pt-12 text-white" id="slide-7">
             <div class="max-w-md mx-auto w-full h-full flex flex-col justify-center text-center relative">
                 
                 <!-- Suspans Text -->
@@ -454,12 +456,12 @@
         </div>
 
         <!-- SLIDE 8: The Cats (6 SCATTERED) -->
-        <div class="slide bg-gray-900 paper-bg p-4 flex flex-col justify-center overflow-hidden" id="slide-8">
+        <div class="slide bg-gray-900 paper-bg p-4 pt-12 flex flex-col justify-center overflow-hidden" id="slide-8">
             <h2 class="text-center text-xl text-gray-500 font-bold uppercase tracking-widest mb-1 z-50 animate-slide-up">Dar să fim sinceri...</h2>
             <p class="text-center text-sm text-gray-400 italic mb-2 z-50 animate-slide-up" style="animation-delay: 0.3s;">De legyünk őszinték...</p>
             
-            <h2 class="text-center wrapped-title text-5xl text-red-600 mb-1 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 1.5s;">Adevăratele vedete. 🐾</h2>
-            <p class="text-center text-xl text-red-400 italic mb-6 z-50 animate-slide-up" style="animation-delay: 1.8s;">Az igazi sztárok. 🐾</p>
+            <h2 class="text-center wrapped-title text-5xl text-red-600 mb-1 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 1.5s;">Adevăratele vedete.</h2>
+            <p class="text-center text-xl text-red-400 italic mb-6 z-50 animate-slide-up" style="animation-delay: 1.8s;">Az igazi sztárok.</p>
             
             <div class="w-full max-w-md mx-auto relative h-[520px]">
                 <div class="absolute w-32 md:w-40 polaroid polaroid-anim -rotate-12 left-[5%] top-[0%] z-10 shadow-xl" style="animation-delay: 3.5s;">
@@ -496,7 +498,7 @@
         </div>
 
         <!-- SLIDE 9: Outro -->
-        <div class="slide bg-red-600 paper-bg flex items-center justify-center text-center px-6" id="slide-9">
+        <div class="slide bg-red-600 paper-bg flex items-center justify-center text-center px-6 pt-12" id="slide-9">
             <div class="max-w-md mx-auto w-full relative">
                 <div class="tape" style="top: -40px; left: 50%; transform: translateX(-50%); width: 200px; height: 50px; z-30"></div>
 
@@ -514,7 +516,8 @@
                     <h1 class="title-font text-4xl md:text-5xl text-red-500 mb-1 animate-slide-up" style="animation-delay: 3.5s;">Boldog születésnapot.</h1>
                     <p class="text-xl text-gray-700 font-light italic mb-8 animate-slide-up" style="animation-delay: 4.0s;">Nagyon cuki vagy.</p>
                     
-                    <button onclick="replayWrapped()" class="px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-800 transition-colors animate-slide-up shadow-lg" style="animation-delay: 5.5s;">
+                    <!-- Butonul Replay -->
+                    <button onclick="replayWrapped()" class="px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-800 transition-colors animate-slide-up shadow-lg relative z-50 pointer-events-auto" style="animation-delay: 5.5s;">
                         Replay / Újra ↺
                     </button>
                 </div>
@@ -524,28 +527,6 @@
     </div>
 
     <script>
-        // --- YouTube API Setup ---
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var ytPlayer;
-        function onYouTubeIframeAPIReady() {
-            ytPlayer = new YT.Player('youtube-audio', {
-                height: '1',
-                width: '1',
-                videoId: 'G2dR2DV-eGc',
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0,
-                    'playsinline': 1,
-                    'loop': 1,
-                    'playlist': 'G2dR2DV-eGc' 
-                }
-            });
-        }
-
         // --- Live Time Logic ---
         function updateTimeAlive() {
             const birthDate = new Date('2003-10-09T00:00:00');
@@ -653,9 +634,11 @@
         let isTap = true;
 
         function startWrapped() {
-            if(ytPlayer && typeof ytPlayer.playVideo === 'function') {
-                ytPlayer.setVolume(50); 
-                ytPlayer.playVideo();
+            // PORNEȘTE MUZICA NATIVĂ DIN FIȘIERUL LOCAL
+            const music = document.getElementById('bg-music');
+            if(music) {
+                music.volume = 0.5; // Setează volumul la 50%
+                music.play().catch(e => console.log("Eroare la redarea muzicii:", e));
             }
 
             countdownOverlay.style.opacity = '0';
@@ -775,11 +758,13 @@
         }
 
         function handlePointerDown(e, isRight) {
+            // Ignoră click-ul dreapta pe mouse
             if (e.button && e.button !== 0) return;
             
             isTap = true;
-            pauseStory(); 
+            pauseStory(); // Pune pe pauză animațiile instantaneu
             
+            // Dacă degetul stă mai mult de 200ms, nu mai e considerat "tap/click" ci "hold"
             holdTimer = setTimeout(() => {
                 isTap = false; 
             }, 200);
@@ -790,6 +775,7 @@
             
             clearTimeout(holdTimer);
             
+            // Dacă iei degetul repede, schimbi slide-ul. Dacă l-ai ținut lung, doar continui de unde erai.
             if (isTap) {
                 if (isRight) nextSlide(true);
                 else prevSlide();
@@ -806,7 +792,9 @@
             zone.addEventListener('pointerdown', (e) => handlePointerDown(e, isRight));
             zone.addEventListener('pointerup', (e) => handlePointerUp(e, isRight));
             zone.addEventListener('pointercancel', (e) => handlePointerUp(e, isRight));
+            // Când degetul iese de pe ecran
             zone.addEventListener('pointerleave', (e) => handlePointerUp(e, isRight));
+            // Oprește click dreapta
             zone.addEventListener('contextmenu', (e) => e.preventDefault());
         }
 
