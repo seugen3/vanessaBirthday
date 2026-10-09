@@ -94,6 +94,9 @@
             position: absolute;
             top: 50px; bottom: 0;
             z-index: 40;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
         .tap-left { left: 0; width: 30%; }
         .tap-right { right: 0; width: 70%; }
@@ -111,7 +114,6 @@
         }
         .animate-pulse-btn { animation: pulseBtn 2s infinite; }
 
-        /* Noul sistem CSS curat: ascunde elementele pana cand animatia incepe */
         .animate-slide-up, .polaroid-anim, .suspense-text { 
             opacity: 0; 
             animation-fill-mode: both; 
@@ -209,8 +211,8 @@
         </div>
 
         <!-- Left/Right Tap Navigation Zones -->
-        <div class="tap-zone tap-left" onclick="prevSlide()"></div>
-        <div class="tap-zone tap-right" onclick="nextSlide(true)"></div>
+        <div class="tap-zone tap-left" id="tap-left"></div>
+        <div class="tap-zone tap-right" id="tap-right"></div>
 
         <!-- SLIDE 0: Intro -->
         <div class="slide bg-gradient-1 paper-bg px-8" id="slide-0">
@@ -219,22 +221,21 @@
                 
                 <h2 class="title-font text-5xl text-white mb-2 animate-slide-up drop-shadow-sm" style="animation-delay: 0.2s;">
                     Pentru Vanessa,<br>
-                    <span class="text-3xl text-red-100 font-light font-sans italic">Vanessa számára,</span>
+                    <span class="text-3xl text-pink-100 font-light font-sans italic">Vanessa számára,</span>
                 </h2>
                 
                 <h1 class="wrapped-title text-5xl md:text-7xl text-white mb-4 animate-slide-up mt-6 drop-shadow-md" style="animation-delay: 0.5s;">
                     23<br>De Rotații<br>În Jurul<br>Soarelui.
                 </h1>
-                <p class="text-xl text-red-100 italic mb-8 animate-slide-up" style="animation-delay: 0.7s;">23 forgás a Nap körül.</p>
+                <p class="text-xl text-pink-100 italic mb-8 animate-slide-up" style="animation-delay: 0.7s;">23 forgás a Nap körül.</p>
                 
                 <p class="text-xl md:text-2xl text-white font-bold animate-slide-up" style="animation-delay: 1.2s;">
                     Hai să ne uităm la povestea ta.<br>
-                    <span class="text-lg text-red-200 italic font-normal">Nézzük meg a te történetedet.</span>
+                    <span class="text-lg text-pink-200 italic font-normal">Nézzük meg a te történetedet.</span>
                 </p>
             </div>
         </div>
 
-        <!-- SLIDE 1: 2003 Culture -->
         <!-- SLIDE 1: 2003 Culture -->
         <div class="slide paper-bg p-8 flex items-center justify-center" id="slide-1">
             <div class="max-w-md mx-auto w-full text-center relative">
@@ -262,7 +263,7 @@
         <div class="slide bg-gradient-1 paper-bg flex items-center justify-center p-8" id="slide-2">
             <div class="max-w-md mx-auto w-full text-center relative">
                 <h2 class="wrapped-title text-4xl md:text-5xl text-white mb-4 animate-slide-up drop-shadow-md leading-tight">
-                    Vanessa, ești foarte, foarte <br><span class="text-yellow-300 text-6xl">ügyes</span>. ✨
+                    Vanessa, ești foarte, foarte <br><span class="text-yellow-300 text-6xl">ügyes</span>.
                 </h2>
                 <p class="text-xl text-red-100 italic mb-10 animate-slide-up" style="animation-delay: 0.3s;">Vanessa, nagyon-nagyon ügyes vagy.</p>
                 
@@ -277,37 +278,39 @@
         </div>
 
         <!-- SLIDE 3: Zodiac -->
-        <div class="slide bg-gradient-zodiac p-6 flex items-center justify-center" id="slide-3">
-            <div class="max-w-md mx-auto w-full text-center relative text-white pt-10">
+        <div class="slide bg-gradient-zodiac p-6 flex flex-col justify-center pt-16" id="slide-3">
+            <div class="max-w-md mx-auto w-full text-center relative text-white">
                 
-                <!-- Suspans Text - Acum perfect izolat și curat -->
+                <!-- Suspans Text -->
                 <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-50 suspense-text">
                     <p class="text-2xl font-bold italic text-red-200 tracking-widest animate-pulse">Analizăm astrele...</p>
                     <p class="text-lg font-light italic text-red-400 tracking-widest mt-2">Csillagok elemzése...</p>
                 </div>
 
-                <h2 class="text-xl md:text-2xl text-red-300 font-bold mb-1 animate-slide-up uppercase tracking-widest" style="animation-delay: 3.8s;">Născută sub semnul</h2>
-                <p class="text-base text-red-400 italic mb-2 animate-slide-up" style="animation-delay: 4.0s;">Jegyében születtél</p>
-                
-                <h1 class="wrapped-title text-5xl md:text-6xl mb-4 animate-slide-up drop-shadow-md" style="animation-delay: 4.8s;">Balanței ♎<br><span class="text-2xl font-light italic">Mérleg ♎</span></h1>
+                <div class="animate-slide-up" style="animation-delay: 3.8s;">
+                    <h2 class="text-lg md:text-xl text-red-300 font-bold uppercase tracking-widest mt-4">Născută sub semnul</h2>
+                    <p class="text-sm text-red-400 italic mb-2">Jegyében születtél</p>
+                    
+                    <h1 class="wrapped-title text-5xl md:text-6xl mb-4 drop-shadow-md">Balanței ♎<br><span class="text-2xl font-light italic">Mérleg ♎</span></h1>
+                </div>
                 
                 <div class="space-y-3 text-left">
                     <div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10 animate-slide-up -rotate-1" style="animation-delay: 6.5s;">
                         <p class="text-xs text-red-300 font-bold uppercase mb-1">Caracteristica 1:</p>
-                        <p class="text-lg font-bold">Extrem de inteligentă. 🧠</p>
+                        <p class="text-lg font-bold">Extrem de inteligentă.</p>
                         <p class="text-xs text-gray-300 italic mt-0.5">Rendkívül okos.</p>
                     </div>
                     
                     <div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10 animate-slide-up rotate-1 ml-4" style="animation-delay: 8.5s;">
                         <p class="text-xs text-red-300 font-bold uppercase mb-1">Caracteristica 2:</p>
-                        <p class="text-lg font-bold">Absolut superbă. ✨</p>
+                        <p class="text-lg font-bold">Absolut superbă.</p>
                         <p class="text-xs text-gray-300 italic mt-0.5">Abszolút gyönyörű.</p>
                     </div>
                     
                     <div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10 animate-slide-up -rotate-2" style="animation-delay: 11.0s;">
                         <p class="text-xs text-red-300 font-bold uppercase mb-1">Adevărul gol-goluț / Az őszinte igazság:</p>
-                        <p class="text-sm leading-tight mb-1">Ești incredibil de nehotărâtă când vine vorba de alegeri, dar mereu extrem de sigură pe tine când zici ceva!</p>
-                        <p class="text-xs text-gray-300 italic leading-tight">Hihetetlenül döntésképtelen vagy a választásoknál, de mindig nagyon határozott vagy abban, amit mondasz!</p>
+                        <p class="text-sm md:text-base leading-tight mb-1">Ești incredibil de nehotărâtă când vine vorba de alegeri, dar mereu extrem de sigură pe tine când zici ceva!</p>
+                        <p class="text-xs md:text-sm text-gray-300 italic leading-tight">Hihetetlenül döntésképtelen vagy a választásoknál, de mindig nagyon határozott vagy abban, amit mondasz!</p>
                     </div>
                 </div>
             </div>
@@ -318,34 +321,33 @@
             <h2 class="text-center title-font text-3xl md:text-4xl text-white mb-1 z-50 drop-shadow-sm animate-slide-up">Avertisment: Nivel periculos de ridicat de frumusețe...</h2>
             <p class="text-center text-red-200 italic mb-6 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 0.3s;">Figyelem: Veszélyesen magas szépségszint...</p>
             
-            <div class="w-full max-w-md mx-auto relative h-[500px]">
-                
-                <!-- Cele 3 poze de fundal / laterale -->
+            <div class="w-full max-w-md mx-auto relative h-[520px]">
+                <!-- Pozele ei -->
                 <div class="absolute w-32 md:w-40 polaroid polaroid-anim -rotate-12 top-[5%] left-[5%] shadow-lg" style="animation-delay: 2.0s;">
                     <div class="tape"></div>
                     <img src="https://i.imgur.com/CGNzmHM.jpeg" class="w-full aspect-[4/5] object-cover">
                 </div>
                 
-                <div class="absolute w-36 md:w-44 polaroid polaroid-anim rotate-12 top-[10%] right-[5%] shadow-lg" style="animation-delay: 3.5s;">
+                <div class="absolute w-36 md:w-44 polaroid polaroid-anim rotate-12 top-[10%] right-[5%] shadow-lg" style="animation-delay: 4.0s;">
                     <div class="tape"></div>
                     <img src="https://i.imgur.com/pG9usjG.jpeg" class="w-full aspect-[4/5] object-cover">
                 </div>
 
-                <div class="absolute w-40 md:w-48 polaroid polaroid-anim -rotate-6 top-[25%] left-[10%] shadow-xl" style="animation-delay: 5.0s;">
+                <div class="absolute w-40 md:w-48 polaroid polaroid-anim -rotate-6 top-[25%] left-[10%] shadow-xl" style="animation-delay: 6.0s;">
                     <div class="tape"></div>
                     <img src="https://i.imgur.com/Y1nuqLF.jpeg" class="w-full aspect-[4/5] object-cover">
                 </div>
                 
-                <!-- Main centered image (Asta pe care o voiai principala) -->
-                <div class="absolute w-48 md:w-56 polaroid polaroid-anim rotate-2 top-[20%] left-0 right-0 mx-auto z-40 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" style="animation-delay: 7.0s;">
+                <!-- Main centered image -->
+                <div class="absolute w-48 md:w-56 polaroid polaroid-anim rotate-2 top-[20%] left-0 right-0 mx-auto z-40 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" style="animation-delay: 8.0s;">
                     <div class="tape" style="width: 100px;"></div>
                     <img src="https://i.imgur.com/fdBmzx2.jpeg" class="w-full aspect-[4/5] object-cover">
                     <p class="text-center mt-3 text-gray-800 title-font text-2xl font-bold">Superbă.<br><span class="text-sm italic font-normal text-gray-500">Gyönyörű.</span></p>
                 </div>
             </div>
             
-            <h2 class="text-center title-font text-3xl md:text-4xl text-white mt-8 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 9.0s;">Uită-te la tine cum strălucești!</h2>
-            <p class="text-center text-red-200 italic mt-1 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 9.3s;">Nézd, hogy ragyogsz!</p>
+            <h2 class="text-center title-font text-3xl md:text-4xl text-white mt-8 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 10.0s;">Uită-te la tine cum strălucești!</h2>
+            <p class="text-center text-red-200 italic mt-1 z-50 drop-shadow-sm animate-slide-up" style="animation-delay: 10.3s;">Nézd, hogy ragyogsz!</p>
         </div>
 
         <!-- SLIDE 5: Us (6 PHOTOS SCATTERED) -->
@@ -355,7 +357,7 @@
                 <p class="text-2xl text-red-200 italic mb-6 animate-slide-up z-50" style="animation-delay: 0.3s;">Az idei duód</p>
                 
                 <div class="w-full relative h-[520px]">
-                    <!-- Toate cele 6 poze ale voastre cad una dupa alta pe rand cu delay mare -->
+                    <!-- Toate cele 6 poze cad una dupa alta -->
                     <div class="absolute w-32 md:w-40 polaroid polaroid-anim -rotate-6 top-[0%] left-[5%] shadow-lg" style="animation-delay: 1.5s;">
                         <div class="tape"></div>
                         <img src="https://i.imgur.com/NzUeOg2.jpeg" class="w-full aspect-square object-cover">
@@ -393,23 +395,23 @@
         <!-- SLIDE 6: Written Message -->
         <div class="slide bg-gradient-1 paper-bg p-8 flex items-center justify-center" id="slide-6">
             <div class="max-w-md mx-auto w-full relative">
-                <div class="bg-[#fdfbf7] p-8 rounded shadow-2xl relative animate-slide-up border-2 border-red-100" style="animation-delay: 0.5s;">
+                <div class="bg-[#fdfbf7] p-6 md:p-8 rounded shadow-2xl relative animate-slide-up border-2 border-red-100" style="animation-delay: 0.5s;">
                      <div class="tape" style="top: -15px; left: 50%; transform: translateX(-50%); width: 100px;"></div>
                      
                      <h2 class="title-font text-4xl text-red-600 mb-1 border-red-200">Pentru tine...</h2>
                      <p class="text-lg text-red-400 italic mb-6 border-b-2 border-red-200 pb-2">Neked...</p>
                      
                      <!-- EDIT THIS TEXT BELOW -->
-                     <p class="text-lg text-gray-800 font-light leading-relaxed mb-4">
-                        [Aici vei scrie mesajul tău. Ceva drăguț despre cât de mult o iubești, momentele voastre preferate, sau orice altceva îți dorești să îi transmiți în această zi specială.]
+                     <p class="text-base md:text-lg text-gray-800 font-light leading-relaxed mb-4">
+                        Îți doresc să ai în viața ta oameni care să lupte la fel de tare pentru tine, cum lupți și tu pentru animale. Îmi doresc să fii înconjurată de oameni – cum ți-am spus și ieri – la fel de frumoși precum sunt ochii tăi și la fel de inteligenți precum ești și tu.
                      </p>
-                     <p class="text-lg text-gray-800 font-light leading-relaxed">
-                        [Te iubesc mult și îți doresc un an plin de bucurii și de noi, bineînțeles!]
+                     <p class="text-base md:text-lg text-gray-800 font-light leading-relaxed">
+                        Dar, mai presus de toate acestea, îmi doresc ca în anul care vine să ajungi să te privești pe tine cu privirea cu care te privesc eu. Mi-aș dori să începi să te iubești pe tine cu iubirea pe care, de fapt, o meriți din plin. Ești o persoană iubită de toți, Vanessa; totuși, pare că uneori tocmai tu te iubești cel mai puțin.
                      </p>
                      <!-- EDIT THIS TEXT ABOVE -->
 
-                     <p class="title-font text-2xl text-red-500 text-right mt-8">Cu dragoste, [Numele tău]</p>
-                     <p class="text-sm text-gray-500 italic text-right mt-1">Szeretettel, [Numele tău]</p>
+                     <p class="title-font text-2xl text-red-500 text-right mt-8">Cu dragoste, Eugen Sipos</p>
+                     <p class="text-sm text-gray-500 italic text-right mt-1">Szeretettel, Eugen Sipos</p>
                 </div>
             </div>
         </div>
@@ -418,7 +420,7 @@
         <div class="slide bg-gradient-time p-6 text-white" id="slide-7">
             <div class="max-w-md mx-auto w-full h-full flex flex-col justify-center text-center relative">
                 
-                <!-- Suspans Text ascuns complet si afisat curat -->
+                <!-- Suspans Text -->
                 <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-50 suspense-text">
                     <p class="text-2xl font-bold italic text-purple-200 tracking-widest animate-pulse">Calculăm momentele magice...</p>
                     <p class="text-lg font-light italic text-purple-300 tracking-widest mt-2">Varázslatos pillanatok kiszámítása...</p>
@@ -512,7 +514,6 @@
                     <h1 class="title-font text-4xl md:text-5xl text-red-500 mb-1 animate-slide-up" style="animation-delay: 3.5s;">Boldog születésnapot.</h1>
                     <p class="text-xl text-gray-700 font-light italic mb-8 animate-slide-up" style="animation-delay: 4.0s;">Nagyon cuki vagy.</p>
                     
-                    <!-- Fixed Replay Button using JS instead of reload -->
                     <button onclick="replayWrapped()" class="px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-800 transition-colors animate-slide-up shadow-lg" style="animation-delay: 5.5s;">
                         Replay / Újra ↺
                     </button>
@@ -523,7 +524,7 @@
     </div>
 
     <script>
-        // --- YouTube API Setup (Pentru muzica de fundal) ---
+        // --- YouTube API Setup ---
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -534,20 +535,19 @@
             ytPlayer = new YT.Player('youtube-audio', {
                 height: '1',
                 width: '1',
-                videoId: 'G2dR2DV-eGc', // ID-ul piesei RHCP
+                videoId: 'G2dR2DV-eGc',
                 playerVars: {
                     'autoplay': 0,
                     'controls': 0,
                     'playsinline': 1,
                     'loop': 1,
-                    'playlist': 'G2dR2DV-eGc' // Playlist e necesar pentru ca loop-ul să funcționeze
+                    'playlist': 'G2dR2DV-eGc' 
                 }
             });
         }
 
         // --- Live Time Logic ---
         function updateTimeAlive() {
-            // Birthdate: October 9, 2003
             const birthDate = new Date('2003-10-09T00:00:00');
             const now = new Date();
             const diffMs = now - birthDate;
@@ -643,13 +643,18 @@
         let currentSlide = 0;
         let slideTimer;
         
-        // Duration set slightly longer to accommodate all the beautiful animations
         const SLIDE_DURATION = 20000; 
 
+        // PAUSE/RESUME LOGIC STATE
+        let isPaused = false;
+        let slideStartTime = 0;
+        let remainingTime = SLIDE_DURATION;
+        let holdTimer;
+        let isTap = true;
+
         function startWrapped() {
-            // PORNEȘTE MUZICA YOUTUBE AICI
             if(ytPlayer && typeof ytPlayer.playVideo === 'function') {
-                ytPlayer.setVolume(50); // Volumul (0-100). Am setat la 50.
+                ytPlayer.setVolume(50); 
                 ytPlayer.playVideo();
             }
 
@@ -664,13 +669,9 @@
             }, 800);
         }
 
-        // Custom function to fix the replay button
         function replayWrapped() {
-            // Remove active class from all slides
             slides.forEach(slide => slide.classList.remove('active'));
-            // Reset to first slide
             currentSlide = 0;
-            // Restart progress bars and show first slide
             initProgressBars();
             showSlide(0);
         }
@@ -687,8 +688,17 @@
         }
 
         function showSlide(index) {
+            isPaused = false;
+            remainingTime = SLIDE_DURATION;
+            slideStartTime = Date.now();
+            clearTimeout(slideTimer);
+
             slides.forEach((slide, i) => {
                 slide.classList.remove('active');
+                
+                const animatedElements = slide.querySelectorAll('.animate-slide-up, .polaroid-anim, .suspense-text');
+                animatedElements.forEach(el => el.style.animationPlayState = ''); 
+
                 const fill = document.getElementById(`fill-${i}`);
                 if(fill) {
                     fill.style.transition = 'none';
@@ -697,7 +707,6 @@
                 }
             });
 
-            // Trigger a reflow to guarantee CSS animations restart purely
             void slides[index].offsetWidth; 
             slides[index].classList.add('active');
 
@@ -705,18 +714,104 @@
             if(currentFill) {
                 currentFill.style.width = '0%';
                 setTimeout(() => {
-                    currentFill.style.transition = `width ${SLIDE_DURATION}ms linear`;
-                    currentFill.style.width = '100%';
+                    if (!isPaused) {
+                        currentFill.style.transition = `width ${remainingTime}ms linear`;
+                        currentFill.style.width = '100%';
+                    }
                 }, 50);
             }
 
-            clearTimeout(slideTimer);
             if (index < totalSlides - 1) {
-                slideTimer = setTimeout(() => nextSlide(false), SLIDE_DURATION);
+                slideTimer = setTimeout(() => nextSlide(false), remainingTime);
             } else {
                 if(currentFill) setTimeout(() => currentFill.style.width = '100%', 50);
             }
         }
+
+        // --- SISTEMUL DE PAUZĂ (Hold to Pause) ---
+        function pauseStory() {
+            if (isPaused || currentSlide >= totalSlides) return;
+            isPaused = true;
+            
+            clearTimeout(slideTimer);
+            let elapsed = Date.now() - slideStartTime;
+            remainingTime -= elapsed;
+            
+            const fill = document.getElementById(`fill-${currentSlide}`);
+            if (fill) {
+                const computedWidth = window.getComputedStyle(fill).width;
+                fill.style.transition = 'none';
+                fill.style.width = computedWidth;
+            }
+            
+            const slide = document.getElementById(`slide-${currentSlide}`);
+            if(slide) {
+                const animatedElements = slide.querySelectorAll('.animate-slide-up, .polaroid-anim, .suspense-text');
+                animatedElements.forEach(el => el.style.animationPlayState = 'paused');
+            }
+        }
+
+        function resumeStory() {
+            if (!isPaused || currentSlide >= totalSlides) return;
+            isPaused = false;
+            slideStartTime = Date.now();
+            
+            const fill = document.getElementById(`fill-${currentSlide}`);
+            if (fill) {
+                void fill.offsetWidth; 
+                fill.style.transition = `width ${remainingTime}ms linear`;
+                fill.style.width = '100%';
+            }
+            
+            const slide = document.getElementById(`slide-${currentSlide}`);
+            if(slide) {
+                const animatedElements = slide.querySelectorAll('.animate-slide-up, .polaroid-anim, .suspense-text');
+                animatedElements.forEach(el => el.style.animationPlayState = 'running');
+            }
+            
+            if (currentSlide < totalSlides - 1) {
+                slideTimer = setTimeout(() => nextSlide(false), remainingTime);
+            }
+        }
+
+        function handlePointerDown(e, isRight) {
+            if (e.button && e.button !== 0) return;
+            
+            isTap = true;
+            pauseStory(); 
+            
+            holdTimer = setTimeout(() => {
+                isTap = false; 
+            }, 200);
+        }
+
+        function handlePointerUp(e, isRight) {
+            if (e.button && e.button !== 0) return;
+            
+            clearTimeout(holdTimer);
+            
+            if (isTap) {
+                if (isRight) nextSlide(true);
+                else prevSlide();
+            } else {
+                resumeStory(); 
+            }
+        }
+
+        const leftZone = document.getElementById('tap-left');
+        const rightZone = document.getElementById('tap-right');
+
+        function setupTapZone(zone, isRight) {
+            if (!zone) return;
+            zone.addEventListener('pointerdown', (e) => handlePointerDown(e, isRight));
+            zone.addEventListener('pointerup', (e) => handlePointerUp(e, isRight));
+            zone.addEventListener('pointercancel', (e) => handlePointerUp(e, isRight));
+            zone.addEventListener('pointerleave', (e) => handlePointerUp(e, isRight));
+            zone.addEventListener('contextmenu', (e) => e.preventDefault());
+        }
+
+        setupTapZone(leftZone, false);
+        setupTapZone(rightZone, true);
 
         function nextSlide(userInitiated = false) {
             if (currentSlide < totalSlides - 1) {
